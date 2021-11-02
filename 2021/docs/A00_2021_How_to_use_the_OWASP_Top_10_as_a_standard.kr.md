@@ -1,50 +1,25 @@
-# How to use the OWASP Top 10 as a standard
 # OWASP Top 10을 표준으로 사용하기
 
-The OWASP Top 10 is primarily an awareness document. However, this has
-not stopped organizations using it as a de facto industry AppSec
-standard since its inception in 2003. If you want to use the OWASP Top
-10 as a coding or testing standard, know that it is the bare minimum and
-just a starting point.
+OWASP Top 10은 기본적으로 안내 문서이지만, 기관들은 2003년 도입 이후로 사실상 이를 산업에서의 앱 보안 표준으로 사용해 왔습니다. 만약 OWASP Top 10을 코딩이나 테스트의 표준으로 사용하려면, 이것이 단지 보안을 위한 최소한의 요건임을 명심하세요.
 
-OWASP Top 10은 기본적으로 안내 문서입니다. 하지만 기관들은 2003년 도입 이후로 이를 사실상 산업에서의 앱 보안 표준으로 사용해 왔습니다. 만약 OWASP Top 10을 코딩 또는 테스트 표준으로 사용하려고 한다면, 이것이 단지 보안을 위한 최소한의 요건임을 명심하세요.  
+OWASP Top 10을 표준으로 사용하기 어려운 이유 중 하나는, 이것이 보안 위험도를 기술할 뿐 테스트가 가능하지 않다는 데 있습니다. 예를 들면, "A04: 2021-불안전한 설계"은 대부분의 테스트 형식에는 포함되지 않는 영역을 다룹니다. 또 다른 이유는, 인터뷰 및 효과적인 사고대응 없이는 합당한 테스트와 효과적인 로깅/모니터링이 불가능하다는 것입니다. 정적 코드분석을 통해서 로깅의 부족함을 찾아낼 수는 있지만, 비즈니스 로직이나 접근 제어에 심각한 보안 위협이 있는지는 판단할 수 없습니다. 모의침투를 수행하는 사람은 오직 테스트 환경에서 사고가 발생했다는 것을 알 수 있을 뿐이고, 이것이 실제 서비스에서 동일한 패턴으로 관찰되는 경우는 거의 없습니다.
 
-One of the difficulties of using the OWASP Top 10 as a standard is that
-we document appsec risks, and not necessarily easily testable issues.
-For example, A04:2021-Insecure Design is beyond the scope of most forms
-of testing. Another example is testing in place, in use, and effective
-logging and monitoring can only be done with interviews and requesting a
-sampling of effective incident responses. A static code analysis tool
-can look for the absence of logging, but it might be impossible to
-determine if business logic or access control is logging critical
-security breaches. Penetration testers may only be able to determine
-that they have invoked incident response in a test environment, which
-are rarely monitored in the same way as production.
+우리는 다음과 같은 상황에서 OWASP Top 10를 사용할 것을 추천합니다:
 
-Here are our recommendations for when it is appropriate to use the OWASP
-Top 10:
+| 적용 분야                | OWASP Top 10 2021 | OWASP 애플리케이션 보안검사 표준 |
+|----------------|:-------------------:|:-------------------------------------:|
+| 보안인식               | Yes               |                                                  |
+| 교육                | 시작 단계       | 모든 수준의 학생 대상                                    |
+| 설계와 아키텍쳐 | 가끔      | Yes                                              |
+| 코딩 표준         | 최소한으로      | Yes                                              |
+| 시큐어 코딩 리뷰      | 최소한으로      | Yes                                              |
+| 동료심사 점검표   | 최소한으로      | Yes                                              |
+| 유닛 테스트            | 가끔      | Yes                                              |
+| 통합 테스트     | 가끔      | Yes                                              |
+| 침투 테스트     | 최소한으로      | Yes                                              |
+| Tool support            | 최소한으로      | Yes                                              |
+| 안전한 공급망     | 가끔      | Yes                                              |
 
-| Use Case                | OWASP Top 10 2021 | OWASP Application Security Verification Standard |
-|-------------------------|:-------------------:|:--------------------------------------------------:|
-| Awareness               | Yes               |                                                  |
-| Training                | Entry level       | Comprehensive                                    |
-| Design and architecture | Occasionally      | Yes                                              |
-| Coding standard         | Bare minimum      | Yes                                              |
-| Secure Code review      | Bare minimum      | Yes                                              |
-| Peer review checklist   | Bare minimum      | Yes                                              |
-| Unit testing            | Occasionally      | Yes                                              |
-| Integration testing     | Occasionally      | Yes                                              |
-| Penetration testing     | Bare minimum      | Yes                                              |
-| Tool support            | Bare minimum      | Yes                                              |
-| Secure Supply Chain     | Occasionally      | Yes                                              |
+애플리케이션 보안검사 표준을 적용하고 싶다면, 입증과 테스트가 가능하도록 설계되었고 안전한 개발 생명주기의 모든 곳에 적용할 수 있는 [OWASP 애플리케이션 보안검사 표준](https://owasp.org/www-project-application-security-verification-standard/)(ASVS)을 사용해볼 것을 권합니다. 
 
-We would encourage anyone wanting to adopt an application security
-standard to use the [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
-(ASVS), as it’s designed to be verifiable and tested, and can be used in
-all parts of a secure development lifecycle.
-
-The ASVS is the only acceptable choice for tool vendors. Tools cannot
-comprehensively detect, test, or protect against the OWASP Top 10 due to
-the nature of several of the OWASP Top 10 risks, with reference to
-A04:2021-Insecure Design. OWASP discourages any claims of full coverage
-of the OWASP Top 10, because it’s simply untrue.
+개발 소프트웨어 제공자들에게는 ASVS가 유일한 선택지입니다. "A04: 2021-불안전한 설계"처럼, 그 특성 상 개발 소프트웨어가 완전히 발견, 테스트, 보호할 수 없는 OWASP Top 10 위험성들이 있습니다. OWASP는 OWASP Top 10을 모두 해결했다는 어떠한 주장도 지지하지 않습니다. 그건 불가능하기 때문입니다.
